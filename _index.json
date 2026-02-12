@@ -1,0 +1,286 @@
+{
+  "version": "1.0.0",
+  "updated": "2026-02-12",
+  "entries": [
+    {
+      "id": "onboarding-getting-started",
+      "title": "新人入职指南",
+      "path": "categories/onboarding/getting-started.md",
+      "aliases": ["入职", "新人", "入门", "getting started"],
+      "tags": ["入门", "新人"],
+      "summary": "新人入职后需要完成的准备工作，包括权限申请、环境搭建、工具熟悉等。"
+    },
+    {
+      "id": "tools-kadmin",
+      "title": "Kadmin 服务器管理工具",
+      "path": "categories/tools/kadmin.md",
+      "aliases": ["kadmin", "服务器管理", "部署服务器", "清服", "镜像构建"],
+      "tags": ["工具", "服务器", "部署"],
+      "summary": "Kadmin 是服务器管理后台，用于部署服务器、构建镜像、修改配置、清服等操作。"
+    },
+    {
+      "id": "tools-jenkins",
+      "title": "Jenkins 打包机使用",
+      "path": "categories/tools/jenkins.md",
+      "aliases": ["jenkins", "打包机", "打包", "出包", "构建包", "打包机地址", "dlc打包机", "上传打包机", "172.20.110", "workspace", "下包地址", "手动下载"],
+      "tags": ["工具", "打包", "客户端"],
+      "summary": "Jenkins 打包机地址汇总：国际服整包用10打包机(172.20.110.10)，国服整包用8打包机(172.20.110.8)，线上DLC用28打包机(172.20.110.28)，测试DLC用14/40打包机，上传状态查看用9打包机(172.20.110.9)。统一账号p2admin。Workspace下载：安卓在10打包机/ws/client/Build/路径，iOS在9打包机/ws/Build/路径。"
+    },
+    {
+      "id": "tools-tgs-entrance",
+      "title": "TGS Entrance 配置系统",
+      "path": "categories/tools/tgs-entrance.md",
+      "aliases": ["tgs", "entrance", "entrance配置", "bundle配置", "dynamic", "ondemand", "hotfix", "patch", "dlc配置", "客户端热更"],
+      "tags": ["工具", "配置", "DLC"],
+      "summary": "TGS 是客户端配置管理系统，用于配置 entrance（bundle源），控制客户端资源版本、DLC热更（patch/hotfix）。登录地址 console.tap4hub.com，权限找李映荷。"
+    },
+    {
+      "id": "tools-postman-hotfix",
+      "title": "Postman 常用热更操作",
+      "path": "categories/tools/postman-hotfix.md",
+      "aliases": ["postman", "热更", "热更配置", "hotcfg", "schema", "schema id", "热更配置表"],
+      "tags": ["工具", "热更", "配置"],
+      "summary": "Postman 用于热更配置表（需Authorization认证）和修改服务器 schema id（不需认证）。热更配置表使用 hotcfg 命令。"
+    },
+    {
+      "id": "environment-aab-install",
+      "title": "AAB 包安装方法",
+      "path": "categories/environment/aab-install.md",
+      "aliases": ["aab", "aab安装", "aab包", "bundletool", "安装aab", "一键安装", "install.bat", "无线调试"],
+      "tags": ["环境", "安装", "安卓"],
+      "summary": "AAB 包有两种安装方式：PC端通过 install.bat 脚本安装（需配置JDK和adb），手机端通过无线调试一键安装（Android 11+）。"
+    },
+    {
+      "id": "environment-client-troubleshoot",
+      "title": "客户端环境异常定位与解决办法",
+      "path": "categories/environment/client-troubleshoot.md",
+      "aliases": ["进不去", "客户端问题", "登录失败", "闪退", "卡登录", "黑屏", "internal error", "ErrCodePfCharacterListFailed", "活动入口无响应", "白名单", "UDID", "网关限制"],
+      "tags": ["环境", "问题排查", "客户端"],
+      "summary": "客户端常见错误排查：internal error（TGS未配entrance）、ErrCodePfCharacterListFailed（本地DLC配置错误）、活动入口无响应（未拉取fastfollow）等。白名单限制方式：UDID白名单（特定设备）、网关限制（内网可进）。"
+    },
+    {
+      "id": "environment-rollback",
+      "title": "环境回退操作方法",
+      "path": "categories/environment/rollback.md",
+      "aliases": ["回退", "rollback", "环境回退", "代码回退", "服务器回退", "配置回退", "回滚"],
+      "tags": ["环境", "问题排查", "服务器"],
+      "summary": "测试遇到阻塞问题时回退环境：客户端用SourceTree回退Unity代码，服务器用Kadmin回滚或commit值重新部署，配置可单独回退或与代码一起回退。"
+    },
+    {
+      "id": "workflows-new-server-test",
+      "title": "新服测试流程",
+      "path": "categories/workflows/new-server-test.md",
+      "aliases": ["新服", "新服测试", "开服测试", "新服验证"],
+      "tags": ["流程", "测试", "新服"],
+      "summary": "新服上线前的测试验证流程，确保新服务器配置正确、功能正常。"
+    },
+    {
+      "id": "workflows-merge-server-test",
+      "title": "合服测试流程",
+      "path": "categories/workflows/merge-server-test.md",
+      "aliases": ["合服", "合服测试", "服务器合并", "合区"],
+      "tags": ["流程", "测试", "合服"],
+      "summary": "服务器合并时的测试验证流程，确保玩家数据正确迁移、功能正常。"
+    },
+    {
+      "id": "workflows-dlc-test",
+      "title": "线上与测试环境 DLC 操作流程",
+      "path": "categories/workflows/dlc-test.md",
+      "aliases": ["dlc", "dlc测试", "热更测试", "资源更新", "dlc构建", "本地entrance", "EntranceViewer", "Entrance.json"],
+      "tags": ["流程", "测试", "DLC"],
+      "summary": "从60版本开始版本功能更新方式由发整包变为DLC热更。线上环境通过TGS配置，测试环境通过本地Entrance.json文件配置。提供EntranceViewer工具辅助修改。"
+    },
+    {
+      "id": "workflows-channel-package-test",
+      "title": "新增安卓渠道包测试流程",
+      "path": "categories/workflows/channel-package-test.md",
+      "aliases": ["渠道包测试", "新渠道包", "mj包", "渠道验证", "新增渠道", "渠道包流程", "closed testing"],
+      "tags": ["流程", "测试", "渠道"],
+      "summary": "新增渠道包需要完成打包工程配置、aab上传、谷歌后台配置、TGS entrance配置、支付验证、推送验证、市场SDK连通性测试等步骤。"
+    },
+    {
+      "id": "workflows-pre-deployment-test",
+      "title": "上线前测试流程",
+      "path": "categories/workflows/pre-deployment-test.md",
+      "aliases": ["上线前", "预发布", "pre-deployment", "发版测试", "提审测试"],
+      "tags": ["流程", "测试", "上线"],
+      "summary": "版本正式上线前的最终验证流程，确保版本质量达到上线标准。"
+    },
+    {
+      "id": "workflows-cn-package-export",
+      "title": "国服导包流程",
+      "path": "categories/workflows/cn-package-export.md",
+      "aliases": ["国服导包", "导包", "转包", "渠道包导出", "apk-tool", "好游", "taptap", "头条", "CYTJ"],
+      "tags": ["流程", "国服", "打包"],
+      "summary": "使用 apk-tool 工具将测试通过的 main 包转换为各渠道包（好游、taptap、头条、CYTJ1~21等），上传至 box 文档和百度网盘。"
+    },
+    {
+      "id": "workflows-alipay-refund",
+      "title": "国服正式环境支付宝退款操作流程",
+      "path": "categories/workflows/alipay-refund.md",
+      "aliases": ["支付宝退款", "退款", "alipay", "退款操作", "OAP商城退款", "国服退款"],
+      "tags": ["流程", "支付", "国服"],
+      "summary": "测试国服支付后需要退款时，在T4F审批列表中提交退款申请，填写游戏（Age of apes）、订单类型（平台订单）、订单ID（商户订单号）、渠道平台（支付宝），等待项目负责人审批。"
+    },
+    {
+      "id": "references-channel-list",
+      "title": "P2所有渠道版本及注意事项",
+      "path": "categories/references/channel-list.md",
+      "aliases": ["渠道列表", "渠道包", "渠道", "channel", "登录方式", "支付方式", "测试账号", "海外华为", "国内华为", "GP", "appstore"],
+      "tags": ["参考", "渠道"],
+      "summary": "P2 游戏所有渠道包的完整列表，包括登录方式、安装设备、支付方式、测试账号、entrance配置等详细信息。"
+    },
+    {
+      "id": "workflows-release-checklist",
+      "title": "版本上线 Checklist",
+      "path": "categories/workflows/release-checklist.md",
+      "aliases": ["上线checklist", "发正式包", "发布流程", "上线流程", "提审流程", "正式包发布", "封DLC", "强更", "马甲包"],
+      "tags": ["流程", "上线", "发布"],
+      "summary": "版本上线完整流程：确认版本号→清理打包机→部署审核服→配置entrance→各渠道打包验证→提审→上传备份。包含封DLC流程、强更方法、各渠道打包参数、马甲包差异说明。"
+    },
+    {
+      "id": "references-feature-block",
+      "title": "版本功能屏蔽内容及处理人",
+      "path": "categories/references/feature-block.md",
+      "aliases": ["功能屏蔽", "屏蔽", "dlc屏蔽", "热更屏蔽", "斗士屏蔽", "活动屏蔽", "机甲屏蔽", "礼包屏蔽", "王子琛", "林康", "王姣"],
+      "tags": ["参考", "屏蔽", "版本"],
+      "summary": "版本功能屏蔽处理人：新斗士/机甲找王子琛（DLC屏蔽），主城特效/铭牌找林康+孙明昊（热更屏蔽），其他资源内容找林康（热更+DLC），礼包/活动找王姣（热更+DLC）。"
+    },
+    {
+      "id": "workflows-dlc-verification",
+      "title": "正式 DLC 验证准则",
+      "path": "categories/workflows/dlc-verification.md",
+      "aliases": ["dlc验证", "正式dlc", "dlc测试准则", "dlc覆盖", "hotfix验证", "渠道dlc", "版本兼容"],
+      "tags": ["流程", "测试", "DLC"],
+      "summary": "正式DLC验证四步：1.一个渠道完整验证所有修改内容 2.不同分支简单覆盖确保合并无遗漏（世界服/国服统一用hotfix分支）3.每个渠道抽查确保构建上传正常 4.每个entrance版本抽查安卓/iOS其一确保无兼容差异。"
+    },
+    {
+      "id": "workflows-ondemand-size-check",
+      "title": "Ondemand 大小验证流程",
+      "path": "categories/workflows/ondemand-size-check.md",
+      "aliases": ["ondemand", "ondemand验证", "ondemand大小", "资源大小验证", "dlc大小", "下载大小", "loading大小"],
+      "tags": ["流程", "测试", "DLC"],
+      "summary": "封DLC前4-5天验证ondemand大小：用线上最新GP主包（裸包）+新号拉取DLC，查看loading界面下载大小。覆盖主包+mj1~mj6共7个包。≥5M同步超哥并找康哥优化，<1M可直接记录。"
+    },
+    {
+      "id": "workflows-release-package-verification",
+      "title": "正式包验证流程",
+      "path": "categories/workflows/release-package-verification.md",
+      "aliases": ["正式包验证", "整包验证", "渠道包验证", "发包验证", "gp验证", "ios验证", "国服验证"],
+      "tags": ["流程", "测试", "发布"],
+      "summary": "同分支+同打包工程的渠道包常规无差异，只需完整验证一个主包（GP/iOS主包/Main），其他渠道包验证差异（登录/支付/FTE）。国际服安卓分GP组和特殊渠道组，iOS分主包组。验证后上传APK至box。"
+    },
+    {
+      "id": "references-gm-commands",
+      "title": "P2 GM 指令大全",
+      "path": "categories/references/gm-commands.md",
+      "aliases": ["gm指令", "gm命令", "测试指令", "控制台命令", "addasset", "initbase", "faddactv", "nextsmall", "movekvk", "addbuff", "sethorde"],
+      "tags": ["参考", "工具", "测试"],
+      "summary": "GM指令大全：initbase（初始化高级账号）、addasset（添加资产）、faddactv（开启活动）、nextsmall（天下大势跳阶段）、movekvk（进入KVK）、addbuff（添加buff）、sethorde（更换部落）等。涵盖资产、英雄、建筑、活动、时间、战场等模块。"
+    },
+    {
+      "id": "workflows-activity-open-guide",
+      "title": "活动开启流程指南",
+      "path": "categories/workflows/activity-open-guide.md",
+      "aliases": ["活动开启", "开活动", "kvk开启", "联盟战场开启", "ac联赛", "太空争霸", "巅峰领土", "攻城略地", "一网打尽", "跨服活动"],
+      "tags": ["流程", "活动", "测试"],
+      "summary": "各类活动开启流程：一网打尽（需15人+联盟币+R4/R5开启）、KVK（movekvk指令或后台开启，需开服15天）、联盟战场（ubattleapply+enterub）、AC联赛、太空争霸、攻城略地、巅峰领土战等。跨服活动需确保cross/battle/subcross服正常启动。"
+    },
+    {
+      "id": "references-activity-open-mechanism",
+      "title": "活动开启机制参考",
+      "path": "categories/references/activity-open-mechanism.md",
+      "aliases": ["活动机制", "开启机制", "定时开启", "循环开启", "后台开启", "跨服开启", "条件触发", "is_ark"],
+      "tags": ["参考", "活动", "测试"],
+      "summary": "活动开启机制：定时开启、循环开启、后台开启（is_ark=1）、条件触发开启、跨服开启（同group/同schema/后台跨服）。看2111表S_MAP_start_trigger字段判断开启方式。"
+    },
+    {
+      "id": "references-test-accounts-payment",
+      "title": "测试账号及支付方式",
+      "path": "categories/references/test-accounts-payment.md",
+      "aliases": ["测试账号", "支付测试", "沙盒账号", "ios支付", "安卓支付", "华为支付", "catappult", "flexion", "emulator", "充值中心", "airwallex"],
+      "tags": ["参考", "测试", "支付"],
+      "summary": "测试账号汇总：iOS沙盒qa_p2@nibirutech.com、安卓沙盒Androidtest@nibirutech.com、华为沙盒找章哥设置。各渠道支付：catappult用AppCoins Wallet、flexion用flexion tester、emulator用银行卡、充值中心用测试卡4035501000000008。"
+    },
+    {
+      "id": "references-qa-nav-links",
+      "title": "QA 常用工具和资源导航",
+      "path": "categories/references/qa-nav-links.md",
+      "aliases": ["导航", "工具链接", "常用链接", "qa导航", "nav", "kadmin地址", "jenkins地址", "tgs地址", "jira地址"],
+      "tags": ["参考", "工具", "资源"],
+      "summary": "QA常用工具导航：Kadmin(kadmin.tap4fun.com)、TGS(console.tap4hub.com)、Jenkins打包机(172.20.110.10/8/28/14)、igame后台、Jira、配置表、测试用例、线上BUG总表、版本排期计划表、测试安排表等。导航主页nav.tap4fun.com/qa。"
+    },
+    {
+      "id": "references-tips-reminders",
+      "title": "测试注意事项与提醒",
+      "path": "categories/references/tips-reminders.md",
+      "aliases": ["注意事项", "提醒", "tips", "坑点", "特效问题", "调时间", "引导", "日志", "crash", "翻译语言", "张冠斌", "刘松"],
+      "tags": ["参考", "测试", "提醒"],
+      "summary": "测试注意事项：特效问题UI找张冠斌/模型找刘松、调时间不超过一年否则BI日志记不到、测试功能要开引导、buff类型要核对、战装试炼场不能用一拳超人、crash日志路径sdcard/Android/data/com.tap4fun.ape.gplay/files/log（重进前保存）。"
+    },
+    {
+      "id": "references-localization-guide",
+      "title": "本地化逻辑与 Bug 分配",
+      "path": "categories/references/localization-guide.md",
+      "aliases": ["本地化", "翻译", "多语言", "本地化key", "文本问题", "语言", "localization"],
+      "tags": ["参考", "测试", "本地化"],
+      "summary": "本地化Bug分配：显示本地化Key→给策划；静态文本问题→给GUI；动态文本显示错误→给客户端；不好区分且没显示Key→给客户端。游戏支持17种语言(cn/en/fr/de/po/zh/id/th/sp/ru/tr/vi/it/pl/ar/jp/kr)。"
+    },
+    {
+      "id": "workflows-test-reimbursement",
+      "title": "日常测试报销流程",
+      "path": "categories/workflows/test-reimbursement.md",
+      "aliases": ["报销", "测试报销", "付费报销", "支付报销", "充值报销", "罗丽姐"],
+      "tags": ["流程", "报销", "日常"],
+      "summary": "测试报销两种方式：低频直接发截图给罗丽姐（需提供付费截图、付费人、时间、测试目的）；高频在组内表单记录，定期由leader统一申请。"
+    },
+    {
+      "id": "references-game-terms",
+      "title": "P2 游戏内名词解释",
+      "path": "categories/references/game-terms.md",
+      "aliases": ["名词解释", "游戏术语", "AC", "GVG", "KVK", "KVK2", "ZVZ", "卫星战场", "火车竞赛", "银河战争", "异星争霸", "最强猴子跨服"],
+      "tags": ["参考", "名词", "游戏"],
+      "summary": "游戏活动缩写：AC=卫星战场、GVG=火车竞赛、KVK=银河战争、KVK2=异星争霸、ZVZ=最强猴子跨服。其他常见缩写：FTE=新手引导、DLC=热更资源、GP=Google Play、MJ=马甲包。"
+    },
+    {
+      "id": "workflows-ios-review-checklist",
+      "title": "iOS 审核服 + 正式包验证流程",
+      "path": "categories/workflows/ios-review-checklist.md",
+      "aliases": ["审核服", "审核服checklist", "一级冒烟", "正式包验证", "冒烟测试", "大版本包", "小版本包", "马甲包验证", "pc包", "win包", "flexion包"],
+      "tags": ["流程", "测试", "审核"],
+      "summary": "审核服测试流程：环境检查（国际服2/3服、国服6001服）、Checklist 13项、常见问题解决。一级冒烟：大版本包99条、小版本包36条、马甲包40条。包含PC/Win/Flexion包环境准备、各渠道登录方式汇总。"
+    },
+    {
+      "id": "references-text-filter-scenarios",
+      "title": "玩家发言过滤场景",
+      "path": "categories/references/text-filter-scenarios.md",
+      "aliases": ["发言过滤", "敏感词", "文本过滤", "聊天过滤", "名称过滤", "屏蔽词", "违禁词", "帮派名称", "玩家名称", "聊天"],
+      "tags": ["参考", "测试", "过滤"],
+      "summary": "玩家发言过滤四大场景：个人信息命名（玩家名称/签名/好友备注/机甲战车名称/存档命名）、聊天与分享（世界频道/消息分享/截图分享/邮件）、帮派相关（帮派名称/申请/宣言/标记/指令/KVK荣誉墙）、小游戏（砍价）。"
+    },
+    {
+      "id": "workflows-merge-server-confirm",
+      "title": "合服需求确认流程",
+      "path": "categories/workflows/merge-server-confirm.md",
+      "aliases": ["合服确认", "合服需求", "合服处理", "合服前准备", "版本发布表"],
+      "tags": ["流程", "合服", "确认"],
+      "summary": "合服前一周确认：1）dev群@服务器同学（张涵/崔紫航/李钢/徐琮淦/周垚旭）更新版本发布表的合服处理信息；2）节日活动合服处理群跟运营林康确认合服处理需求。"
+    },
+    {
+      "id": "workflows-holiday-activity-submit",
+      "title": "节日活动提测要求",
+      "path": "categories/workflows/holiday-activity-submit.md",
+      "aliases": ["节日活动提测", "活动提测", "提测checklist", "活动自测", "节日活动", "gacha播报", "排行榜发奖"],
+      "tags": ["流程", "活动", "提测"],
+      "summary": "节日活动提测前6项自测：本地化Key、文本中文、引导触发、gacha播报、排行榜发奖、道具获取途径。需求案需明确复用版本、基础框架、新增优化。依赖资源的功能需配替代资源或等正式资源就绪。"
+    },
+    {
+      "id": "references-platform-sdk-features",
+      "title": "平台 SDK 涉及功能清单",
+      "path": "categories/references/platform-sdk-features.md",
+      "aliases": ["平台SDK", "SDK功能", "SDK测试", "登录SDK", "支付SDK", "推送SDK", "GP支付", "iOS支付", "FB登录", "翻译", "头像上传"],
+      "tags": ["参考", "SDK", "测试"],
+      "summary": "P2平台SDK涉及12大功能：GP/iOS支付、推送、翻译、聊天、auth/fb/gp/ios登录、上传头像头像框、邮件。包含各渠道登录方式、支付方式、测试账号、Discord规则、账号注销要求、常见SDK问题。"
+    }
+  ]
+}
