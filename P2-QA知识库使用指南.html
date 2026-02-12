@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P2 QA 知识库 - 使用指南</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #a5b4fc;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --bg: #0f172a;
+            --bg-card: #1e293b;
+            --bg-card-hover: #334155;
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --code-bg: #0d1117;
+            --gradient-1: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            --gradient-2: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 30%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 70%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .logo {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .hero .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .badge-row {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .badge {
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .badge-number {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .scroll-indicator svg {
+            width: 32px;
+            height: 32px;
+            color: var(--text-muted);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            opacity: 0;
+            transform: translateY(-100%);
+            transition: all 0.3s ease;
+        }
+
+        nav.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        nav .logo-small {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--text);
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Quick Start */
+        .steps {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .step {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2rem;
+            align-items: start;
+            padding: 2rem;
+            background: var(--bg-card);
+            border-radius: 1rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .step:hover {
+            border-color: var(--primary);
+            transform: translateX(10px);
+        }
+
+        .step-number {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .step-content h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-content p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        /* Code Block */
+        .code-block {
+            background: var(--code-bg);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .code-header span {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        .copy-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            transition: all 0.2s;
+            font-size: 0.875rem;
+        }
+
+        .copy-btn:hover {
+            background: var(--bg-card);
+            color: var(--text);
+        }
+
+        .code-block pre {
+            padding: 1rem;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            line-height: 1.7;
+        }
+
+        .code-block code {
+            color: #e2e8f0;
+        }
+
+        .code-block .comment { color: #6b7280; }
+        .code-block .command { color: #10b981; }
+        .code-block .path { color: #f59e0b; }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .feature-card {
+            padding: 2rem;
+            background: var(--bg-card);
+            border-radius: 1rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.1);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.9375rem;
+        }
+
+        /* Examples */
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .example-card {
+            padding: 1.5rem;
+            background: var(--bg-card);
+            border-radius: 1rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .example-card:hover {
+            border-color: var(--secondary);
+        }
+
+        .example-question {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .example-question .avatar {
+            width: 32px;
+            height: 32px;
+            background: var(--gradient-2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+        }
+
+        .example-question span {
+            font-weight: 500;
+        }
+
+        .example-answer {
+            color: var(--text-muted);
+            font-size: 0.9375rem;
+        }
+
+        .example-answer strong {
+            color: var(--text);
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--bg-card);
+            border-radius: 1rem;
+            border: 1px solid var(--border);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9375rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Categories */
+        .categories-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .category-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.25rem 1.5rem;
+            background: var(--bg-card);
+            border-radius: 0.75rem;
+            border: 1px solid var(--border);
+            transition: all 0.2s ease;
+        }
+
+        .category-item:hover {
+            border-color: var(--primary);
+            background: var(--bg-card-hover);
+        }
+
+        .category-icon {
+            font-size: 1.5rem;
+        }
+
+        .category-info {
+            flex: 1;
+        }
+
+        .category-info h4 {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .category-info p {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        .category-count {
+            background: var(--bg);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        /* Keywords */
+        .keywords-section {
+            background: var(--bg-card);
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid var(--border);
+        }
+
+        .keywords-section h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .keyword-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .keyword-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .keyword-group h4 {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .keyword-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .keyword-tag {
+            padding: 0.375rem 0.75rem;
+            background: var(--bg);
+            border-radius: 0.5rem;
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+            transition: all 0.2s;
+        }
+
+        .keyword-tag:hover {
+            border-color: var(--primary);
+            color: var(--text);
+        }
+
+        /* FAQ */
+        .faq-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border-radius: 0.75rem;
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.25rem 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+        }
+
+        .faq-question:hover {
+            background: var(--bg-card-hover);
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            transition: transform 0.3s;
+        }
+
+        .faq-item.open .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 200px;
+        }
+
+        .faq-answer p {
+            padding: 0 1.5rem 1.25rem;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        footer .maintainer {
+            color: var(--primary-light);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .step {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .examples-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <span class="logo-small">📚 P2 QA 知识库</span>
+        <ul>
+            <li><a href="#quickstart">快速开始</a></li>
+            <li><a href="#features">功能特性</a></li>
+            <li><a href="#examples">使用示例</a></li>
+            <li><a href="#content">知识内容</a></li>
+            <li><a href="#faq">常见问题</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="logo">📚</div>
+            <h1>P2 QA 知识库</h1>
+            <p class="subtitle">基于 Cursor AI 的智能知识管理系统<br>用自然语言提问，秒速获取测试相关知识</p>
+            <div class="badge-row">
+                <span class="badge">
+                    <span class="badge-number">36</span> 知识条目
+                </span>
+                <span class="badge">
+                    <span class="badge-number">5</span> 大分类
+                </span>
+                <span class="badge">
+                    <span class="badge-number">100+</span> 可检索关键词
+                </span>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+        </div>
+    </section>
+
+    <section id="quickstart">
+        <div class="section-header fade-in">
+            <h2>🚀 快速开始</h2>
+            <p>只需三步，即可开始使用知识库</p>
+        </div>
+
+        <div class="steps">
+            <div class="step fade-in">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>克隆仓库</h3>
+                    <p>将知识库克隆到本地 Cursor 目录</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>Terminal</span>
+                            <button class="copy-btn" onclick="copyCode(this)">复制</button>
+                        </div>
+                        <pre><code><span class="command">git clone</span> <span class="path">https://git.tap4fun.com/p2/qa-knowledge.git</span> ~/Desktop/Cursor/p2-qa-knowledge</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step fade-in">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>添加到 Cursor 工作区</h3>
+                    <p>在 Cursor 中添加知识库文件夹</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>操作步骤</span>
+                        </div>
+                        <pre><code><span class="comment"># 打开 Cursor</span>
+<span class="comment"># 点击 File → Add Folder to Workspace</span>
+<span class="comment"># 选择 ~/Desktop/Cursor/p2-qa-knowledge</span></code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step fade-in">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>开始提问</h3>
+                    <p>在 AI 对话框中用自然语言提问即可</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>示例问题</span>
+                        </div>
+                        <pre><code><span class="path">"审核服怎么测"</span>
+<span class="path">"GP 支付测试账号是什么"</span>
+<span class="path">"怎么开 KVK"</span>
+<span class="path">"DLC 怎么打"</span></code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features">
+        <div class="section-header fade-in">
+            <h2>✨ 功能特性</h2>
+            <p>为 QA 团队量身打造的知识管理方案</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card fade-in">
+                <div class="feature-icon">🔍</div>
+                <h3>自然语言检索</h3>
+                <p>无需记忆文档位置，直接用口语化的问题提问，AI 自动匹配相关知识</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon">⚡</div>
+                <h3>秒速响应</h3>
+                <p>本地知识库，无需联网等待，即问即答，提升工作效率</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon">📝</div>
+                <h3>结构化内容</h3>
+                <p>每个知识条目都有简答、详细步骤、常见坑点，快速定位所需信息</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon">🔄</div>
+                <h3>持续更新</h3>
+                <p>通过 Git 管理，一键 pull 获取最新知识，团队共同维护</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon">🏷️</div>
+                <h3>多维度索引</h3>
+                <p>支持别名、标签、关键词多种检索方式，总能找到你要的内容</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon">💡</div>
+                <h3>场景触发提醒</h3>
+                <p>特定关键词自动触发相关提醒，避免遗漏重要注意事项</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="examples">
+        <div class="section-header fade-in">
+            <h2>💬 使用示例</h2>
+            <p>看看知识库能回答哪些问题</p>
+        </div>
+
+        <div class="examples-grid">
+            <div class="example-card fade-in">
+                <div class="example-question">
+                    <div class="avatar">Q</div>
+                    <span>审核服怎么测？</span>
+                </div>
+                <div class="example-answer">
+                    <strong>知识库回答：</strong>审核服测试包含 13 项 Checklist（安装检查、网络检查、数据检查、特殊处理、一级冒烟），国际服用 2/3 服，国服用 6001 服...
+                </div>
+            </div>
+            <div class="example-card fade-in">
+                <div class="example-question">
+                    <div class="avatar">Q</div>
+                    <span>GP 支付测试账号是什么？</span>
+                </div>
+                <div class="example-answer">
+                    <strong>知识库回答：</strong>安卓沙盒账号 Androidtest@nibirutech.com，iOS 沙盒账号 qa_p2@nibirutech.com，华为沙盒找章哥设置...
+                </div>
+            </div>
+            <div class="example-card fade-in">
+                <div class="example-question">
+                    <div class="avatar">Q</div>
+                    <span>怎么开 KVK？</span>
+                </div>
+                <div class="example-answer">
+                    <strong>知识库回答：</strong>KVK 开启方式：1) movekvk 指令 2) 后台开启。前置条件：开服 15 天。需确保 cross/battle/subcross 服正常启动...
+                </div>
+            </div>
+            <div class="example-card fade-in">
+                <div class="example-question">
+                    <div class="avatar">Q</div>
+                    <span>客户端进不去怎么办？</span>
+                </div>
+                <div class="example-answer">
+                    <strong>知识库回答：</strong>根据错误提示排查：internal error（TGS 未配 entrance）、ErrCodePfCharacterListFailed（本地 DLC 配置错误）...
+                </div>
+            </div>
+            <div class="example-card fade-in">
+                <div class="example-question">
+                    <div class="avatar">Q</div>
+                    <span>DLC 怎么打？</span>
+                </div>
+                <div class="example-answer">
+                    <strong>知识库回答：</strong>线上 DLC 用 28 打包机(172.20.110.28)，测试 DLC 用 14/40 打包机。统一账号 p2admin...
+                </div>
+            </div>
+            <div class="example-card fade-in">
+                <div class="example-question">
+                    <div class="avatar">Q</div>
+                    <span>新渠道包测试流程？</span>
+                </div>
+                <div class="example-answer">
+                    <strong>知识库回答：</strong>新增渠道包需完成：打包工程配置 → aab 上传 → 谷歌后台配置 → TGS entrance 配置 → 支付验证 → 推送验证 → 市场 SDK 连通性测试...
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="content">
+        <div class="section-header fade-in">
+            <h2>📊 知识内容</h2>
+            <p>覆盖 QA 日常工作的方方面面</p>
+        </div>
+
+        <div class="stats-grid fade-in">
+            <div class="stat-card">
+                <div class="stat-number">36</div>
+                <div class="stat-label">知识条目</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">5</div>
+                <div class="stat-label">内容分类</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">5K+</div>
+                <div class="stat-label">文档行数</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100+</div>
+                <div class="stat-label">检索关键词</div>
+            </div>
+        </div>
+
+        <div class="categories-list fade-in">
+            <div class="category-item">
+                <span class="category-icon">🛠️</span>
+                <div class="category-info">
+                    <h4>工具使用</h4>
+                    <p>Kadmin、Jenkins、TGS、Postman 等工具操作指南</p>
+                </div>
+                <span class="category-count">4 条</span>
+            </div>
+            <div class="category-item">
+                <span class="category-icon">⚙️</span>
+                <div class="category-info">
+                    <h4>环境配置</h4>
+                    <p>AAB 安装、客户端问题排查、环境回退等</p>
+                </div>
+                <span class="category-count">3 条</span>
+            </div>
+            <div class="category-item">
+                <span class="category-icon">📋</span>
+                <div class="category-info">
+                    <h4>工作流程</h4>
+                    <p>新服/合服/DLC/渠道包/上线/审核服/活动等完整流程</p>
+                </div>
+                <span class="category-count">16 条</span>
+            </div>
+            <div class="category-item">
+                <span class="category-icon">📖</span>
+                <div class="category-info">
+                    <h4>参考资料</h4>
+                    <p>渠道列表、GM 指令、测试账号、SDK 功能等速查表</p>
+                </div>
+                <span class="category-count">12 条</span>
+            </div>
+            <div class="category-item">
+                <span class="category-icon">🎓</span>
+                <div class="category-info">
+                    <h4>入门指南</h4>
+                    <p>新人入职准备、权限申请、环境搭建</p>
+                </div>
+                <span class="category-count">1 条</span>
+            </div>
+        </div>
+
+        <div class="keywords-section fade-in" style="margin-top: 2rem;">
+            <h3>🏷️ 可检索关键词</h3>
+            <div class="keyword-group">
+                <h4>工具类</h4>
+                <div class="keyword-tags">
+                    <span class="keyword-tag">kadmin</span>
+                    <span class="keyword-tag">jenkins</span>
+                    <span class="keyword-tag">打包机</span>
+                    <span class="keyword-tag">tgs</span>
+                    <span class="keyword-tag">entrance</span>
+                    <span class="keyword-tag">postman</span>
+                    <span class="keyword-tag">热更</span>
+                    <span class="keyword-tag">workspace</span>
+                </div>
+            </div>
+            <div class="keyword-group">
+                <h4>流程类</h4>
+                <div class="keyword-tags">
+                    <span class="keyword-tag">审核服</span>
+                    <span class="keyword-tag">一级冒烟</span>
+                    <span class="keyword-tag">新服测试</span>
+                    <span class="keyword-tag">合服测试</span>
+                    <span class="keyword-tag">DLC 验证</span>
+                    <span class="keyword-tag">渠道包测试</span>
+                    <span class="keyword-tag">上线 checklist</span>
+                    <span class="keyword-tag">活动开启</span>
+                </div>
+            </div>
+            <div class="keyword-group">
+                <h4>参考类</h4>
+                <div class="keyword-tags">
+                    <span class="keyword-tag">GM 指令</span>
+                    <span class="keyword-tag">测试账号</span>
+                    <span class="keyword-tag">登录方式</span>
+                    <span class="keyword-tag">支付方式</span>
+                    <span class="keyword-tag">SDK 功能</span>
+                    <span class="keyword-tag">渠道列表</span>
+                    <span class="keyword-tag">名词解释</span>
+                    <span class="keyword-tag">功能屏蔽</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq">
+        <div class="section-header fade-in">
+            <h2>❓ 常见问题</h2>
+            <p>遇到问题？看看这里有没有答案</p>
+        </div>
+
+        <div class="faq-list fade-in">
+            <div class="faq-item">
+                <div class="faq-question">提问后没有得到知识库的回答？</div>
+                <div class="faq-answer">
+                    <p>确保 p2-qa-knowledge 文件夹已添加到 Cursor 工作区，且 SKILL.md 文件存在。重启 Cursor 后再试。</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">知识库内容过时了怎么办？</div>
+                <div class="faq-answer">
+                    <p>执行 git pull 获取最新内容，或联系李映荷更新知识库。</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">想添加新知识怎么办？</div>
+                <div class="faq-answer">
+                    <p>直接在 Cursor 中告诉 AI 你想补充的内容，或按照模板格式提交 Merge Request。</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">可以离线使用吗？</div>
+                <div class="faq-answer">
+                    <p>可以！知识库是本地文件，克隆后无需联网即可使用（但 Cursor AI 本身需要联网）。</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">如何获取更新？</div>
+                <div class="faq-answer">
+                    <p>在知识库目录下执行 git pull 即可获取最新内容。建议每周同步一次。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>📚 P2 QA 知识库</p>
+        <p>维护者：<span class="maintainer">李映荷</span> | 问题反馈：P2 QA 群</p>
+        <p style="margin-top: 1rem; font-size: 0.875rem;">最后更新：2026-02-12</p>
+    </footer>
+
+    <script>
+        // Navbar visibility
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('visible');
+            } else {
+                navbar.classList.remove('visible');
+            }
+        });
+
+        // Fade in animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // FAQ accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('open');
+            });
+        });
+
+        // Copy code
+        function copyCode(btn) {
+            const code = btn.closest('.code-block').querySelector('code').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                const originalText = btn.textContent;
+                btn.textContent = '已复制!';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                }, 2000);
+            });
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
