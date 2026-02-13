@@ -281,6 +281,14 @@
       "aliases": ["平台SDK", "SDK功能", "SDK测试", "登录SDK", "支付SDK", "推送SDK", "GP支付", "iOS支付", "FB登录", "翻译", "头像上传"],
       "tags": ["参考", "SDK", "测试"],
       "summary": "P2平台SDK涉及12大功能：GP/iOS支付、推送、翻译、聊天、auth/fb/gp/ios登录、上传头像头像框、邮件。包含各渠道登录方式、支付方式、测试账号、Discord规则、账号注销要求、常见SDK问题。"
+    },
+    {
+      "id": "references-release-issues-summary",
+      "title": "版本发布异常汇总",
+      "path": "categories/references/release-issues-summary.md",
+      "aliases": ["发布异常", "版本问题", "拒审", "渠道拒审", "线上问题", "dlc问题", "发布问题", "审核问题", "oppo拒审", "小米拒审", "华为拒审", "九游拒审", "taptap拒审", "屏蔽词添加"],
+      "tags": ["参考", "发布", "问题", "复盘"],
+      "summary": "历史版本发布异常汇总：各渠道常见拒审原因及处理（OPPO/小米/华为/九游/iOS）、线上屏蔽词添加方式（TGS后台或热更1780表）、DLC发布常见问题（兼容/patch/hotfix/ondemand）、版本发布流程规范、顶号方式。"
     }
   ]
 }
